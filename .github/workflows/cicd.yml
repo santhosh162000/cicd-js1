@@ -6,6 +6,7 @@ on:
 jobs:
   tests:
     runs-on: ubuntu-latest
+    id: testsid
 
     strategy:
       matrix:
@@ -29,6 +30,7 @@ jobs:
   sonarqube:
     name: Build
     runs-on: ubuntu-latest
+    needs: testsid
     steps:
       - uses: actions/checkout@v2
         with:
