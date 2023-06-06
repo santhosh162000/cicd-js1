@@ -38,8 +38,6 @@ jobs:
           release_name: Release ${{ github.ref }}
           body: |
             Release of version ${{ github.ref }}
-          draft: false
-          prerelease: true
 
       - name: Upload SDK
         uses: actions/upload-release-asset@v1
