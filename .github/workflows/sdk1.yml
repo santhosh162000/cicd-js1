@@ -1,4 +1,4 @@
-name: Build and release SDK
+name: Build and release SDK for learning
 
 on: 
   pull_request
