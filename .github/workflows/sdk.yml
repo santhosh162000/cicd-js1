@@ -27,7 +27,6 @@ jobs:
 
       - name: Build SDK
         run: npm run build
-        working-directory: ./dist
 
       - name: Create Release
         id: create_release
