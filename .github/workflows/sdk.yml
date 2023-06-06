@@ -10,6 +10,8 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
 
       - name: Setup Node.js
         uses: actions/setup-node@v2
@@ -24,6 +26,7 @@ jobs:
 
       - name: Build SDK
         run: npm run build
+        working-directory: ./dist
 
       - name: Create Release
         id: create_release
