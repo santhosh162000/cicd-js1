@@ -1,4 +1,4 @@
-name: Publish SDK
+name: Publish SDK for learning
 
 on:
   pull_request
