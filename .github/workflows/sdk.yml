@@ -23,7 +23,7 @@ jobs:
 
       - name: Build project
         run: |
-          zip --junk-paths my-artifact src
+          zip --junk-paths my-artifact ./src
 
       - name: Build SDK
         run: npm run build
