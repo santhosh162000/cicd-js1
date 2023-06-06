@@ -19,6 +19,9 @@ jobs:
       - name: Install Dependencies
         run: npm ci
 
+      - name: Create Distribution Directory
+        run: mkdir -p ./dist  
+
       - name: Build SDK
         run: npm run build
 
