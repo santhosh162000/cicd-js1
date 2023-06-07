@@ -48,7 +48,7 @@
       [
         "@semantic-release/github",
         {
-          "assets": ["build/static/*.js", "build/static/*.js.map"]
+          "assets": ["build"]
         }
       ]
     ]

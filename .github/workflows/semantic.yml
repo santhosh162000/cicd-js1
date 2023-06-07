@@ -19,6 +19,19 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build
+      - name: Upload SDK
+        uses: actions/upload-artifact@v2   
+        with:
+          name: SDK
+          path: build/
+      - name: Download contents
+        uses: actions/download-artifact@v2
+        with:
+          name: SDK
+      - name: Archive contents
+        uses: thedoctor0/zip-release@master
+        with:
+          filename: site.zip          
       - name: Create semantic release
         id: create_release
         run: npm run semantic-release
