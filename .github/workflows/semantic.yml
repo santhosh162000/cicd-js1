@@ -27,11 +27,7 @@ jobs:
       - name: Download contents
         uses: actions/download-artifact@v2
         with:
-          name: SDK
-      - name: Archive contents
-        uses: thedoctor0/zip-release@master
-        with:
-          filename: site.zip          
+          name: SDK         
       - name: Create semantic release
         id: create_release
         run: npm run semantic-release
