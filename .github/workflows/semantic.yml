@@ -16,7 +16,8 @@ jobs:
         with:
           node-version: 18
       - run: npm ci
-      - run: npm run build
+      - name: Build
+        run: npm run build
       - name: Create semantic release
         id: create_release
         run: npm run semantic-release
