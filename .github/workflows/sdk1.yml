@@ -1,7 +1,7 @@
 name: Build and release SDK for learning
 
 on: 
-  pull_request
+  Workflow_dispatch
 
 jobs:
   release-project:
