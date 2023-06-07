@@ -10,9 +10,10 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: 18
-	    - name: Build SDK # for custom build or when using TypeScript
+          registry-url: https://registry.npmjs.org/
+      - name: Build SDK # for custom build or when using TypeScript
         run: npm run build
-	    - name: Publish to NPM
+      - name: Publish to NPM
         run: npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
