@@ -38,21 +38,26 @@
   "devDependencies": {
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.0.2",
-    "semantic-release": "^21.0.3"
+    "semantic-release": "^21.0.3",
+    "@semantic-release/changelog": "^6.0.3"
   },
   "release": {
     "branches": ["main"],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
-      "@semantic-release/changelog",
       [
         "@semantic-release/github",
         {
           "assets": ["build"]
         }
+      ],
+      [
+        "@semantic-release/changelog",
+        {
+          "changelogFile": "CHANGELOG.md"
+        }
       ]
-    ],
-    "changelogFile": "CHANGELOG.md"
+    ]
   }
 }
