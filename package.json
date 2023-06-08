@@ -55,7 +55,7 @@
       [
         "@semantic-release/github",
         {
-          "assets": ["build", "docs/CHANGELOG.md"]
+          "assets": ["build/static/js/*.js", "docs/CHANGELOG.md"]
           
         }
       ]
