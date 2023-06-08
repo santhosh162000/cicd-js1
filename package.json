@@ -47,15 +47,16 @@
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
       [
-        "@semantic-release/github",
+        "@semantic-release/changelog",
         {
-          "assets": ["build"]
+          "changelogFile": "docs/CHANGELOG.md"
         }
       ],
       [
-        "@semantic-release/changelog",
+        "@semantic-release/github",
         {
-          "changelogFile": "CHANGELOG.md"
+          "assets": ["build", "docs/CHANGELOG.md"]
+          
         }
       ]
     ]
