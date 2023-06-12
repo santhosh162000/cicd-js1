@@ -36,13 +36,25 @@
     ]
   },
   "devDependencies": {
+    "@semantic-release/changelog": "^6.0.3",
     "@semantic-release/git": "^10.0.1",
     "@semantic-release/github": "^9.0.2",
-    "semantic-release": "^21.0.3",
-    "@semantic-release/changelog": "^6.0.3"
+    "babel-eslint": "^10.1.0",
+    "eslint": "^8.42.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-html": "^7.1.0",
+    "eslint-plugin-import": "^2.27.5",
+    "eslint-plugin-prettier": "^4.2.1",
+    "husky": "^8.0.3",
+    "lint-staged": "^13.2.2",
+    "prettier": "^2.8.8",
+    "semantic-release": "^21.0.3"
   },
   "release": {
-    "branches": ["main"],
+    "branches": [
+      "main"
+    ],
     "plugins": [
       "@semantic-release/commit-analyzer",
       "@semantic-release/release-notes-generator",
@@ -55,10 +67,23 @@
       [
         "@semantic-release/github",
         {
-          "assets": ["build/static/js/*.js", "docs/CHANGELOG.md"]
-          
+          "assets": [
+            "build/static/js/*.js",
+            "docs/CHANGELOG.md"
+          ]
         }
       ]
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,css,md}": [
+      "prettier --single-quote --write",
+      "git add"
     ]
   }
 }
