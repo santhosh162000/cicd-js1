@@ -82,7 +82,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css,md}": [
+    "**/*.{js,json,css,md}": [
       "npm run lint",
       "git add"
     ]
