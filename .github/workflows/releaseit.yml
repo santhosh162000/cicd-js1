@@ -28,8 +28,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: SDK         
-      - name: Create semantic release
+      - name: Initialize git user
+        run: |
+            git config --global user.email "test@gmail.com"
+            git config --global user.name "Test"
+      - name: Create semantic release using release-it
         id: create_release
-        run: npm run semantic-release
+        run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
