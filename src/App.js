@@ -2,7 +2,7 @@ import React from 'react';
 
 function App() {
   return (
-        <h1>Learn React</h1>
+        <h1>Learn React and testing git pre-commit hooks</h1>
   );
 }
 

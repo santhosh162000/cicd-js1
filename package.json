@@ -15,7 +15,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "semantic-release": "semantic-release"
+    "semantic-release": "semantic-release",
+    "lint": "eslint '**/*.js'"
   },
   "eslintConfig": {
     "extends": [
@@ -81,8 +82,8 @@
     }
   },
   "lint-staged": {
-    "*.{js,json,css,md}": [
-      "prettier --single-quote --write",
+    "**/*.{js,json,css,md}": [
+      "npm run lint",
       "git add"
     ]
   }
