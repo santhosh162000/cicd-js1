@@ -28,8 +28,8 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: SDK         
-      - name: Create semantic release
+      - name: Create semantic release using release-it
         id: create_release
-        run: npm run semantic-release
+        run: npm run release
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
