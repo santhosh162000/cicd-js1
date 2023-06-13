@@ -28,6 +28,10 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: SDK         
+      - name: Initialize git user
+        run: |
+            git config --global user.email "test@gmail.com"
+            git config --global user.name "Test"
       - name: Create semantic release using release-it
         id: create_release
         run: npm run release
