@@ -18,10 +18,6 @@ jobs:
           path: ${{ runner.temp }}/env
           key: env-variable
 
-  job2:
-    needs: job1
-    runs-on: ubuntu-latest
-    steps:
       - name: Restore environment variable cache
         id: restore-env
         uses: actions/cache@v2
@@ -29,6 +25,10 @@ jobs:
           path: ${{ runner.temp }}/env
           key: env-variable
 
-      - name: Use environment variable in job2
+      - name: Print environment variable value
         run: |
-          echo "The value of ENV_VARIABLE is ${{ steps.restore-env.outputs.paths }}"
+          echo "The cached value of ENV_VARIABLE is ${{ steps.restore-env.outputs.paths }}"
+
+      - name: Use environment variable
+        run: |
+          echo "The value of ENV_VARIABLE is ${{ env.ENV_VARIABLE }}"
