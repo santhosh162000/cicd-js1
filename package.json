@@ -1,6 +1,9 @@
 {
   "name": "cicd-javascript1",
   "version": "0.1.2",
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@santhosh162000"
+  },
   "dependencies": {
     "@commitlint/cli": "^17.6.5",
     "@commitlint/config-conventional": "^17.6.5",
