@@ -17,10 +17,16 @@ jobs:
           releases-only: true  # We know that all relevant tags have a GitHub release for them.
         id: javascript1  # The step ID to refer to later.  
 
+      - name: Get Latest Commit Message
+        id: latest_commit_message
+        run: |
+          git fetch --unshallow
+          echo "::set-output name=commit_message::$(git log --format=%B -n 1)"  
+
       - name: Bump Version
         id: determine_version
         run: |
-          COMMIT_MESSAGE="${{ github.event.inputs.commit_message }}"
+          COMMIT_MESSAGE=${{ steps.latest_commit_message.outputs.commit_message }}
           CURRENT_VERSION=${{ steps.javascript1.outputs.tag }}
 
           if [[ -n $CURRENT_VERSION ]]; then
