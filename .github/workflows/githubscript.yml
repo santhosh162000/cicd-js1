@@ -32,7 +32,7 @@ jobs:
           MINOR=$(echo $CURRENT_VERSION | cut -d '.' -f 2)
           PATCH=$(echo $CURRENT_VERSION | cut -d '.' -f 3)
 
-          echo "Major is  $MAJOR"
+          echo "MAJOR=$MAJOR"
 
           if [[ $COMMIT_MESSAGE == *"[major]"* ]]; then
             MAJOR=$((MAJOR + 1))
