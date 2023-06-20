@@ -6,6 +6,8 @@ on:
 jobs:
   determine_version:
     runs-on: ubuntu-latest
+    outputs:
+      output1: ${{ steps.determine_version.outputs.new_version }}
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -51,7 +53,7 @@ jobs:
 
           NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
           echo "NEW_VERSION=$NEW_VERSION"
-          echo "::set-output name=new_version::$NEW_VERSION"
+          echo "new_version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
 
   create_release:
     needs: determine_version
@@ -60,13 +62,16 @@ jobs:
       contents: write
       packages: write
     steps:
+      - env:
+          OUTPUT1: ${{needs.job1.outputs.output1}}
+        run: echo "$OUTPUT1"  
       - name: Create Release
         uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          tag_name: v${{ needs.determine_version.outputs.new_version }}
-          release_name: Release v${{ needs.determine_version.outputs.new_version }}
+          tag_name: v${{ needs.job1.outputs.output1 }}
+          release_name: Release v${{ needs.job1.outputs.output1 }}
           body: |
             Add release notes or description here
           draft: false
