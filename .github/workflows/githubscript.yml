@@ -20,7 +20,6 @@ jobs:
       - name: Get Latest Commit Message
         id: latest_commit_message
         run: |
-          git fetch --unshallow
           echo "::set-output name=commit_message::$(git log --format=%B -n 1)"  
 
       - name: Bump Version
