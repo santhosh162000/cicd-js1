@@ -20,7 +20,7 @@ jobs:
       - name: Bump Version
         id: determine_version
         run: |
-          COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.sha }})
+          COMMIT_MESSAGE="${{ github.event.inputs.commit_message }}"
           CURRENT_VERSION=${{ steps.javascript1.outputs.tag }}
 
           if [[ -n $CURRENT_VERSION ]]; then
