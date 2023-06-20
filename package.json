@@ -1,5 +1,5 @@
 {
-  "name": "cicd-javascript1",
+  "name": "@santhosh162000/cicd-javascript1",
   "version": "0.1.2",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/@santhosh162000"
