@@ -70,5 +70,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
 
-Added gitstream automation in this repo.
+Added gitstream automation in this repo which includes perenctage of code.
 Testing git pre commit hooks.
