@@ -1,4 +1,4 @@
-name: Release using custom script
+name: Release using custom scripts
 
 on:
   workflow_dispatch
