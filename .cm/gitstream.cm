@@ -28,11 +28,91 @@ automations:
           comment: |
             This PR is considered a safe change and has been automatically approved.
 
+  approve_tests:
+    if:
+      # Triggered for PRs that only include changes to tests
+      - {{ files | allTests }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'tests-only'
+      - action: add-comment@v1
+        args:
+          comment: |
+            This merge has been automatically approved because it only contains changes to tests.
+      - action: approve@v1
+
+  approve_tiny_change:
+    # Triggered for PRs that contain one file and one line.
+    if:
+      - {{ is.one_file and is.one_line }}
+    run:
+      - action: add-label@v1
+        args:
+          label: 'single-line'
+      - action: approve@v1
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR has been approved because it is only a single line  
+
+  label_prs_without_tests:
+    if:
+      - {{ files | match(regex=r/[^a-zA-Z0-9](spec|test|tests)[^a-zA-Z0-9]/) | nope }}
+    run: 
+      - action: add-label@v1
+        args:
+          label: 'missing-tests'
+          color: '#E94637'
+
+  welcome_newcomer:
+    # If the PR author made their first contirbution on the current day
+    if:
+      - {{ repo.author_age < 1 and repo.age > 0 }}
+    # 1. Add reviewers from the team `my_organization/mentors`. Replace this string to match your organization
+    # 2. Apply a new-contributor label.
+    # 3 Post a comment that explains the next steps.
+    run:
+      - action: add-reviewers@v1
+        args:
+          reviewers: [my_organization/mentors]
+      - action: add-label@v1
+        args:
+          label: 'new-contributor'
+          color: '#FBBD10'
+      - action : add-comment@v1
+        args:
+          comment: |
+            Hello {{ pr.author }} 👋 Thanks for making your first PR, and welcome to our project!
+            Our mentor team has automatically been assigned to review this PR and guide you through the process.
+            Please reach out to that team if you have questions about the next steps.
+
+  percent_new_code:
+    if:
+      - true
+    run: 
+      - action: add-comment@v1
+        args:
+          comment: |
+            This PR is {{ changes.ratio }}% new code.
+                              
+
+changes:
+  # Sum all the lines added in the PR
+  additions: {{ branch.diff.files_metadata | map(attr='additions') | sum }}
+  # Sum all the line removed in the PR
+  deletions: {{ branch.diff.files_metadata | map(attr='deletions') | sum }}
+  # Calculate the ratio of new code
+  ratio: {{ (changes.additions / (changes.additions + changes.deletions)) * 100 }}
+
+
 is:
   formatting: {{ source.diff.files | isFormattingChange }}
   docs: {{ files | allDocs }}
   tests: {{ files | allTests }}
   image: {{ files | allImages }}
+  one_file: {{ files | length == 1 }}
+  one_line: {{ changes.additions - changes.deletions <= 1 }}
         
 
 calc:
