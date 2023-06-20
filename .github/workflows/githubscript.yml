@@ -1,7 +1,7 @@
 name: Release using custom scripts
 
 on:
-  push
+  workflow_dispatch
 
 jobs:
   determine_version:
@@ -23,17 +23,17 @@ jobs:
           fi
 
           if [[ $COMMIT_MESSAGE == *"[major]"* ]]; then
-            MAJOR=$((${{ steps.determine_version.outputs.major }} + 1))
+            MAJOR=$((VERSION_MAJOR + 1))
             MINOR=0
             PATCH=0
           elif [[ $COMMIT_MESSAGE == *"[minor]"* ]]; then
-            MAJOR=${{ steps.determine_version.outputs.major }}
-            MINOR=$((${{ steps.determine_version.outputs.minor }} + 1))
+            MAJOR=$VERSION_MAJOR
+            MINOR=$((VERSION_MINOR + 1))
             PATCH=0
           else
-            MAJOR=${{ steps.determine_version.outputs.major }}
-            MINOR=${{ steps.determine_version.outputs.minor }}
-            PATCH=$((${{ steps.determine_version.outputs.patch }} + 1))
+            MAJOR=$VERSION_MAJOR
+            MINOR=$VERSION_MINOR
+            PATCH=$((VERSION_PATCH + 1))
           fi
 
           NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
@@ -49,7 +49,7 @@ jobs:
       - name: Create Release
         uses: actions/create-release@v1
         env:
-          GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
           tag_name: v${{ needs.determine_version.outputs.new_version }}
           release_name: Release v${{ needs.determine_version.outputs.new_version }}
