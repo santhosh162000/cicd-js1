@@ -28,11 +28,15 @@ jobs:
           COMMIT_MESSAGE=${{ steps.latest_commit_message.outputs.commit_message }}
           CURRENT_VERSION=${{ steps.javascript1.outputs.tag }}
 
-          if [[ COMMIT_MESSAGE == *"[major]"* ]]; then
+          MAJOR=$(echo $CURRENT_VERSION | cut -d '.' -f 1)
+          MINOR=$(echo $CURRENT_VERSION | cut -d '.' -f 2)
+          PATCH=$(echo $CURRENT_VERSION | cut -d '.' -f 3)
+
+          if [[ $COMMIT_MESSAGE == *"[major]"* ]]; then
             MAJOR=$((MAJOR + 1))
             MINOR=0
             PATCH=0
-          elif [[ COMMIT_MESSAGE == *"[minor]"* ]]; then
+          elif [[ $COMMIT_MESSAGE == *"[minor]"* ]]; then
             MAJOR=$MAJOR
             MINOR=$((MINOR + 1))
             PATCH=0
