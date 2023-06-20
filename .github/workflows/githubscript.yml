@@ -10,11 +10,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      - name: Determine Version
+      - name: Determine version
+        uses: oprypin/find-latest-tag@v1
+        with:
+          repository: santhosh162000/cicd-js1  # The repository to scan.
+          releases-only: true  # We know that all relevant tags have a GitHub release for them.
+        id: javascript1  # The step ID to refer to later.  
+
+      - name: Bump Version
         id: determine_version
         run: |
           COMMIT_MESSAGE=$(git log --format=%B -n 1 ${{ github.sha }})
-          CURRENT_VERSION=$(git describe --tags --abbrev=0 2>/dev/null)
+          CURRENT_VERSION=${{ steps.javascript1.outputs.tag }}
 
           if [[ -n $CURRENT_VERSION ]]; then
             VERSION=${CURRENT_VERSION#"v"}
