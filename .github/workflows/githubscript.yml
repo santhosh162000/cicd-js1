@@ -48,6 +48,7 @@ jobs:
             MAJOR=$MAJOR
             MINOR=$((MINOR + 1))
             PATCH=0
+            echo "$MAJOR"
           else
             MAJOR=$MAJOR
             MINOR=$MINOR
