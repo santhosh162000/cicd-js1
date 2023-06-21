@@ -48,7 +48,7 @@ jobs:
           echo "PATCH=$PATCH"
 
           if [[ $COMMIT_MESSAGE == "testing3" ]]; then
-            MAJOR=$((MAJOR + 1))
+            MAJOR=$(($MAJOR + 1))
             MINOR=$MINOR
             PATCH=$PATCH
           elif [[ $COMMIT_MESSAGE == "testing" ]]; then
