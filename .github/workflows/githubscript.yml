@@ -60,6 +60,9 @@ jobs:
             MAJOR=$MAJOR
             MINOR=$MINOR
             PATCH=$((PATCH + 1))
+            echo "$MAJOR"
+            echo "$MINOR"
+            echo "$PATCh"
           fi
 
           NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
