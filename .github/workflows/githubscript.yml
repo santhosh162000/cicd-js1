@@ -45,7 +45,6 @@ jobs:
           MINOR=$(echo $CURRENT_VERSION | awk -F. '{print $2}')
           PATCH=$(echo $CURRENT_VERSION | awk -F. '{print $3}')
           echo "MAJOR=$(echo "$MAJORWORD" | grep -o '[0-9]*')"
-          echo "MAJOR1=$MAJOR"
           echo "MINOR=$MINOR"
           echo "PATCH=$PATCH"
 
@@ -58,7 +57,7 @@ jobs:
             MINOR=$(($MINOR + 1))
             PATCH=$PATCH
           else
-            MAJOR2=$MAJOR1
+            MAJOR=$MAJOR
             MINOR=$MINOR
             PATCH=$(($PATCH + 1))
             echo "$MAJOR"
@@ -66,7 +65,7 @@ jobs:
             echo "$PATCH"
           fi
 
-          NEW_VERSION="${MAJOR2}.${MINOR}.${PATCH}"
+          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
           echo "$NEW_VERSION"
           echo "new_version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
 
