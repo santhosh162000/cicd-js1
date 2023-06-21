@@ -45,7 +45,7 @@ jobs:
           MINOR=$(echo $CURRENT_VERSION | awk -F. '{print $2}')
           PATCH=$(echo $CURRENT_VERSION | awk -F. '{print $3}')
           echo "MAJOR=$(echo "$MAJORWORD" | grep -o '[0-9]*')"
-          echo "$MAJOR"
+          echo "MAJOR=$MAJOR"
           echo "MINOR=$MINOR"
           echo "PATCH=$PATCH"
 
