@@ -49,12 +49,12 @@ jobs:
 
           if [[ $COMMIT_MESSAGE == testing ]]; then
             MAJOR=$((MAJOR + 1))
-            MINOR=0
-            PATCH=0
+            MINOR=$MINOR
+            PATCH=$PATCH
           elif [[ $COMMIT_MESSAGE == "testing3" ]]; then
             MAJOR=$((MAJOR))
             MINOR=$((MINOR + 1))
-            PATCH=0
+            PATCH=$PATCH
           else
             MAJOR=$MAJOR
             MINOR=$MINOR
