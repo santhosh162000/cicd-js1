@@ -58,7 +58,7 @@ jobs:
             MINOR=$(($MINOR + 1))
             PATCH=$PATCH
           else
-            MAJOR=$MAJOR
+            MAJOR2=$MAJOR1
             MINOR=$MINOR
             PATCH=$(($PATCH + 1))
             echo "$MAJOR"
@@ -66,7 +66,7 @@ jobs:
             echo "$PATCH"
           fi
 
-          NEW_VERSION="${MAJOR}.${MINOR}.${PATCH}"
+          NEW_VERSION="${MAJOR2}.${MINOR}.${PATCH}"
           echo "$NEW_VERSION"
           echo "new_version=$NEW_VERSION" >> "$GITHUB_OUTPUT"
 
